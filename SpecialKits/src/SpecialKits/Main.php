@@ -63,7 +63,7 @@ class Main extends PluginBase implements Listener{
         "kitsMessage_4" => "§a/urgal §bKit Urgal",
         "kitsMessage_5" => "§a/switcher §bKit Switcher",
     ));
-    $this->saveResource("kitsconfig.yml");
+    $this->saveResource("kitconfig.yml");
 	
     
   }

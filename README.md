@@ -7,6 +7,7 @@ Feature | Config | Working |
 -----------|----------|----------
 Custom Messages | kitmessage.yml | true
 Custom ItemKit(kangaruu) | config.yml | true
+System HGSoup | Not Found | true
 
 ## Commands
 
@@ -16,6 +17,7 @@ Commands | Info | Working |
 /kangaruu | Kangaruu Kit | True
 /stomper | StomperKit | False
 /switcher | SwitcherKit | False
+/urgal | UrgalKit | True
 
 ## API Tested
 - [X] Genisys

@@ -1,6 +1,6 @@
 name: HGkits-SpecialKits
 main: SpecialKits\Main
-version: 0.2
+version: 0.3
 api:
 - 1.12.0
 - 1.13.0
@@ -11,6 +11,10 @@ author: RedstoneAlmeida
 description: HungerGames Kits!
 website: https://github.com/PocketSoftMine/HGKits
 commands:
+ kits:
+  description: Kits
+  use: "kits"
+  permission: kits.command
  stomper:
   description: StomperKit
   use: "/stomper"
@@ -27,6 +31,10 @@ commands:
   description: SwitcherKit
   use: "/switcher"
   permission: switcher.command
+ urgal:
+  description: UrgalKit
+  use: "/urgal"
+  permission: urgal.command
 permissions:
  stomper.command:
   description: "EnderMageKit"
@@ -40,6 +48,12 @@ permissions:
  switcher.command:
   description: "SwitcherKit"
   default: false
+ urgal.command:
+  description: "UrgalKit"
+  default: op
+ kits.command:
+  description: "Kits"
+  default: true
  kangaruu.use.axe:
   description: Gives player permission to use leap via axe!
   default: true

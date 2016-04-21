@@ -1,6 +1,6 @@
 name: HGkits-SpecialKits
-main: SpecialKits\Loader
-version: 0.0
+main: SpecialKits\Main
+version: 0.1
 api:
 - 1.12.0
 - 1.13.0
@@ -33,7 +33,7 @@ permissions:
   default: false
  endermage.command:
   description: "EnderMageKit"
-  default: false
+  default: op
  kangaruu.command:
   description: "KangaruuKit"
   default: false

@@ -38,17 +38,43 @@ class Main extends PluginBase implements Listener{
     $this->getServer()->getPluginManager()->registerEvents($this, $this);
 	$this->saveResource("config.yml");
         
-    $this->config = new Config($this->getDataFolder() . "kitmessage.yml" , Config::YAML, array(
-        "endermageKit_receive",
-        "stomperKit_receive",
-        "kangaruuKit_receive",
-    ));
+    $this->config = new Config($this->getDataFolder() . "kitmessage.yml" , Config::YAML, Array(
+        "endermageKit_receive" => "§bVocê pegou Kit Endermage",
+        "stomperKit_receive" => "§bNao funcioanr",
+        "kangaruuKit_receive" => "§eVocê pegou kit Kangaruu",
+        "urgalKit_receive" => "§cVocê pegou Kit Urgal",
+		"urgalKit_Time" => 10000,
+     ));
     $this->saveResource("kitmessage.yml");
+    
+    $this->kitsConfig = new Config($this->getDataFolder() . "kitsconfig.yml" , Config::YAML, Array(
+        "kitsTitle_Title" => "§a-- §bKITS §a--",
+        "kitsMessage_1" => "§a/endermage §bKit EnderMage",
+        "kitsMessage_2" => "§a/kangaruu §bKit Kangaruu",
+        "kitsMessage_3" => "§a/stomper §bKit Stomper",
+        "kitsMessage_4" => "§a/urgal §bKit Urgal",
+        "kitsMessage_5" => "§a/switcher §bKit Switcher",
+    ));
+    $this->saveResource("kitsconfig.yml");
 	
     
   }
      public function onCommand(CommandSender $sender, Command $command, $label, array $args){
           switch($command->getName()){
+         case "kits":
+             $kitsTitle = $this->kitsConfig->get("kitsTitle_Title");
+             $kitsMessage1 = $this->kitsConfig->get("kitsMessage_1");
+             $kitsMessage2 = $this->kitsConfig->get("kitsMessage_2");
+             $kitsMessage3 = $this->kitsConfig->get("kitsMessage_3");
+             $kitsMessage4 = $this->kitsConfig->get("kitsMessage_4");
+             $kitsMessage5 = $this->kitsConfig->get("kitsMessage_5");
+             $sender->sendMessage($kitsTitle);
+             $sender->sendMessage($kitsMessage1);
+             $sender->sendMessage($kitsMessage2);
+             $sender->sendMessage($kitsMessage3);
+             $sender->sendMessage($kitsMessage4);
+             $sender->sendMessage($kitsMessage5);
+                return false;
          case "endermage":
              $endermageReceive = $this->config->get("endermageKit_receive");
              $sender->getInventory()->addItem(Item::get(90, 0, 1));
@@ -58,6 +84,13 @@ class Main extends PluginBase implements Listener{
              $kangaruuReceive = $this->config->get("kangaruuKit_receive");
              $sender->getInventory()->addItem(Item::get(288, 0, 1));
                 $sender->sendMessage($kangaruuReceive);
+                return false;
+         case "urgal":
+			$urgalReceive = $this->config->get("urgalKit_receive");
+			$sender->getInventory()->addItem(Item::get(366, 0, 1));
+			$sender->getInventory()->addItem(Item::get(366, 0, 1));
+			$sender->getInventory()->addItem(Item::get(366, 0, 1));
+             $sender->sendMessage($urgalReceive);
 		  }
 	 }
 	 
@@ -161,6 +194,25 @@ $player->sendTIP($this->yml["Message"]);
 }
 }
 }
+}
+
+   public function onUse(PlayerInteractEvent $event) {
+    $player = $event->getPlayer();
+    if(count($player->getEffects()) != 3) {
+      if($event->getItem()->getID() == 282) {
+        $player->getInventory()->removeItem(Item::get(282, 0, 1));
+        $player->getInventory()->addItem(Item::get(281, 0, 1));
+		$player->setHealth(20);
+      }
+
+    }else{
+      $player->sendMessage("");
+    }   if($event->getItem()->getID() == 366) {
+		$urgalTime = $this->config->get("urgalKit_Time");
+		  $player->getInventory()->removeItem(Item::get(366, 0, 1));
+         $player->addEffect(Effect::getEffect(5)->setAmplifier(0)->setDuration($urgalTime)->setVisible(true));
+		$player->setHealth(20);
+  }
 }
 }
 

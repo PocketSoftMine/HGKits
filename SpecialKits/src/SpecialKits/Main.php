@@ -53,7 +53,7 @@ class Main extends PluginBase implements Listener{
 		"urgalKit_Time" => 10000,
 		"urgalKit_Item" => 366,
      ));
-    $this->saveResource("kitmessage.yml");
+    $this->saveResource("kitcofing.yml");
     
     $this->kitsConfig = new Config($this->getDataFolder() . "kitmessage.yml" , Config::YAML, Array(
         "kitsTitle_Title" => "§a-- §bKITS §a--",
@@ -63,7 +63,7 @@ class Main extends PluginBase implements Listener{
         "kitsMessage_4" => "§a/urgal §bKit Urgal",
         "kitsMessage_5" => "§a/switcher §bKit Switcher",
     ));
-    $this->saveResource("kitconfig.yml");
+    $this->saveResource("kitmessage.yml");
 	
     
   }
@@ -216,9 +216,10 @@ $player->sendTIP($this->yml["Message"]);
 
     }else{
       $player->sendMessage("");
-    }   if($event->getItem()->getID() == 366) {
+    }   if($event->getItem()->getID() == $this->config->get("urgalKit_Item")) {
+		$urgalItem = $this->config->get("urgalKit_Item");
 		$urgalTime = $this->config->get("urgalKit_Time");
-		  $player->getInventory()->removeItem(Item::get(366, 0, 1));
+		  $player->getInventory()->removeItem(Item::get($urgalItem, 0, 1));
          $player->addEffect(Effect::getEffect(5)->setAmplifier(0)->setDuration($urgalTime)->setVisible(true));
 		$player->setHealth(20);
   }

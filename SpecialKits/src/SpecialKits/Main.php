@@ -33,7 +33,14 @@ class Main extends PluginBase implements Listener{
 	$this->getServer()->getLogger()->info(color::YELLOW. "HGKITS-SpecialKits Ligado!");
     $this->getServer()->getPluginManager()->registerEvents($this, $this);
 	
-	$yml = new Config($this->getDataFolder() . "config.yml", Config::YAML);
+	$yml = new Config($this->getDataFolder() . "config.yml", Config::YAML, Array(
+		"ID" => 288,
+		"Decide" => "Popup",
+		"Message" => "§a§lKangaruu",
+		"ItemName" => "§b§l§oKangaruu",
+		"Choose" => "Popup",
+		"CoolDownMsg" => "§cEspere Por Favor!",
+	));
     $this->yml = $yml->getAll();
     $this->getServer()->getPluginManager()->registerEvents($this, $this);
 	$this->saveResource("config.yml");

@@ -1,6 +1,10 @@
 # HGKits
 Kits from HungerGames plugins, hg kits from PocketMine
 
+## Features
+- Custom Messages(messages in kitmessage.yml)
+- Custom Itens(kangaruu item in config.yml)
+
 ## Commands
 
 Commands | Info | Working |

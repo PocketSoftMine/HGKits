@@ -45,16 +45,17 @@ class Main extends PluginBase implements Listener{
     $this->getServer()->getPluginManager()->registerEvents($this, $this);
 	$this->saveResource("config.yml");
         
-    $this->config = new Config($this->getDataFolder() . "kitmessage.yml" , Config::YAML, Array(
+    $this->config = new Config($this->getDataFolder() . "kitconfig.yml" , Config::YAML, Array(
         "endermageKit_receive" => "§bVocê pegou Kit Endermage",
         "stomperKit_receive" => "§bNao funcioanr",
         "kangaruuKit_receive" => "§eVocê pegou kit Kangaruu",
         "urgalKit_receive" => "§cVocê pegou Kit Urgal",
 		"urgalKit_Time" => 10000,
+		"urgalKit_Item" => 366,
      ));
     $this->saveResource("kitmessage.yml");
     
-    $this->kitsConfig = new Config($this->getDataFolder() . "kitsconfig.yml" , Config::YAML, Array(
+    $this->kitsConfig = new Config($this->getDataFolder() . "kitmessage.yml" , Config::YAML, Array(
         "kitsTitle_Title" => "§a-- §bKITS §a--",
         "kitsMessage_1" => "§a/endermage §bKit EnderMage",
         "kitsMessage_2" => "§a/kangaruu §bKit Kangaruu",
@@ -93,10 +94,11 @@ class Main extends PluginBase implements Listener{
                 $sender->sendMessage($kangaruuReceive);
                 return false;
          case "urgal":
+			$urgalItem = $this->config->get("urgalKit_Item");
 			$urgalReceive = $this->config->get("urgalKit_receive");
-			$sender->getInventory()->addItem(Item::get(366, 0, 1));
-			$sender->getInventory()->addItem(Item::get(366, 0, 1));
-			$sender->getInventory()->addItem(Item::get(366, 0, 1));
+			$sender->getInventory()->addItem(Item::get($urgalItem, 0, 1));
+			$sender->getInventory()->addItem(Item::get($urgalItem, 0, 1));
+			$sender->getInventory()->addItem(Item::get($urgalItem, 0, 1));
              $sender->sendMessage($urgalReceive);
 		  }
 	 }

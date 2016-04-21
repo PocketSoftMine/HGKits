@@ -1,0 +1,14 @@
+---
+## Mensagem do Kit endermage
+endermageKit_receive: §bVocê recebeu o kit Endermage
+## Mensagem do Kit Kangaruu
+kangaruuKit_receive: §eVocê recebeu kit Kangaruu
+## Mensagem do Kit Stomper
+stomperKit_receive: not working
+## Mensagem do KitUrgal
+urgalKit_receive: §cVocê recebeu kit Urgal
+## Tempo de Duração do Efeito do Kit Urgal
+urgalKit_Time: 10000
+## Item do Kit
+urgalKit_Item: 366
+...

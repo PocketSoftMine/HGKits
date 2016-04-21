@@ -1,7 +1,16 @@
 ---
-endermageKit_receive: §bVocê pegou Kit Endermage
-stomperKit_receive: §bNao funcioanr
-kangaruuKit_receive: §eVocê pegou kit Kangaruu
-urgalKit_receive: §cVocê pegou Kit Urgal
-urgalKit_Time: 10000
+## Titulo para Aparecer os Kits
+## Exemplo, para usar o exemplo remova o: #
+# kitsTitle_Title: §a-- §bKITS §a--
+# kitsMessage_1: §a/endermage §bKit EnderMage
+# kitsMessage_2: §a/kangaruu §bKit Kangaruu
+# kitsMessage_3: §a/stomper §bKit Stomper
+# kitsMessage_4: §a/urgal §bKit Urgal
+# kitsMessage_5: §a/switcher §bKit Switcher
+kitsTitle_Title: §a-- §bKITS §a--
+kitsMessage_1: §a/endermage §bKit EnderMage
+kitsMessage_2: §a/kangaruu §bKit Kangaruu
+kitsMessage_3: §a/stomper §bKit Stomper
+kitsMessage_4: §a/urgal §bKit Urgal
+kitsMessage_5: §a/switcher §bKit Switcher
 ...

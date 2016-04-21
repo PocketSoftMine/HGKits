@@ -39,9 +39,9 @@ class Main extends PluginBase implements Listener{
 	$this->saveResource("config.yml");
         
     $this->config = new Config($this->getDataFolder() . "kitmessage.yml" , Config::YAML, array(
-        "endermageKit_receive" => "§bVocê recebeu o kit Endermage",
-        "stomperKit_receive" => "not working",
-        "kangaruuKit_receive" => "§eVocê recebeu kit Kangaruu",
+        "endermageKit_receive",
+        "stomperKit_receive",
+        "kangaruuKit_receive",
     ));
     $this->saveResource("kitmessage.yml");
 	

@@ -7,6 +7,7 @@ Feature | Config | Working |
 -----------|----------|----------
 Custom Messages | kitmessage.yml | true
 Custom ItemKit(kangaruu) | config.yml | true
+Custom Message, Time and Item | kitconfig.yml | True
 System HGSoup | Not Found | true
 
 ## Commands

@@ -36,7 +36,7 @@ permissions:
   default: op
  kangaruu.command:
   description: "KangaruuKit"
-  default: false
+  default: op
  switcher.command:
   description: "SwitcherKit"
   default: false

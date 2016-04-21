@@ -1,5 +1,7 @@
 ---
-endermageKit_receive: §bVocê recebeu o kit Endermage
-kangaruuKit_receive: §eVocêe recebeu kit Kangaruu
-stomperKit_receive: not working
+endermageKit_receive: §bVocê pegou Kit Endermage
+stomperKit_receive: §bNao funcioanr
+kangaruuKit_receive: §eVocê pegou kit Kangaruu
+urgalKit_receive: §cVocê pegou Kit Urgal
+urgalKit_Time: 10000
 ...

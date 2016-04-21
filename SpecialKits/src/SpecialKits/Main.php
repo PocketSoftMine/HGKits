@@ -37,18 +37,27 @@ class Main extends PluginBase implements Listener{
     $this->yml = $yml->getAll();
     $this->getServer()->getPluginManager()->registerEvents($this, $this);
 	$this->saveResource("config.yml");
+        
+    $this->config = new Config($this->getDataFolder() . "kitmessage.yml" , Config::YAML, array(
+        "endermageKit_receive" => "§bVocê recebeu o kit Endermage",
+        "stomperKit_receive" => "not working",
+        "kangaruuKit_receive" => "§eVocê recebeu kit Kangaruu",
+    ));
+    $this->saveResource("kitmessage.yml");
 	
     
   }
      public function onCommand(CommandSender $sender, Command $command, $label, array $args){
           switch($command->getName()){
          case "endermage":
+             $endermageReceive = $this->config->get("endermageKit_receive");
              $sender->getInventory()->addItem(Item::get(90, 0, 1));
-			 $sender->sendMessage(color::BLUE. "Você pegou o kit Endermage");
+			 $sender->sendMessage($endermageReceive);
 		return false;
          case "kangaruu":
+             $kangaruuReceive = $this->config->get("kangaruuKit_receive");
              $sender->getInventory()->addItem(Item::get(288, 0, 1));
-                $sender->sendMessage(color::BLUE. "Você pegou o kit Kangaruu");
+                $sender->sendMessage($kangaruuReceive);
 		  }
 	 }
 	 

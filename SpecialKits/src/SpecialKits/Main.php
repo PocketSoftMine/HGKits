@@ -45,8 +45,11 @@ class Main extends PluginBase implements Listener{
          case "endermage":
              $sender->getInventory()->addItem(Item::get(90, 0, 1));
 			 $sender->sendMessage(color::BLUE. "Você pegou o kit Endermage");
-		}
-		return true;
+		return false;
+         case "kangaruu":
+             $sender->getInventory()->addItem(Item::get(288, 0, 1));
+                $sender->sendMessage(color::BLUE. "Você pegou o kit Kangaruu");
+		  }
 	 }
 	 
 	public function onTip(PlayerItemHeldEvent $ev){

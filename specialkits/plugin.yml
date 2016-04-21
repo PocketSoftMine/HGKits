@@ -1,0 +1,42 @@
+name: HGkits-SpecialKits
+main: SpecialKits\Loader
+version: 0.0
+api:
+- 1.12.0
+- 1.13.0
+- 2.0.0
+
+load: POSTWORLD
+author: RedstoneAlmeida
+description: HungerGames Kits!
+website: https://github.com/PocketSoftMine/HGKits
+commands:
+ stomper:
+  description: StomperKit
+  use: "/stomper"
+  permission: stomperkit.command
+ endermage:
+  description: EnderMageKit
+  use: "/endermage"
+  permission: endermage.command
+ kangaruu:
+  description: KangaruuKit
+  use: "/kangaruu"
+  permission: kangaruu.command
+ switcher:
+  description: SwitcherKit
+  use: "/switcher"
+  permission: switcher.command
+permissions:
+ stomper.command:
+  description: "EnderMageKit"
+  default: false
+ endermage.command:
+  description: "EnderMageKit"
+  default: false
+ kangaruu.command:
+  description: "KangaruuKit"
+  default: false
+ switcher.command:
+  description: "SwitcherKit"
+  default: false

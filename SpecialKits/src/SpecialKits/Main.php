@@ -53,7 +53,7 @@ class Main extends PluginBase implements Listener{
 		"urgalKit_Time" => 10000,
 		"urgalKit_Item" => 366,
      ));
-    $this->saveResource("kitcofing.yml");
+    $this->saveResource("kitconfig.yml");
     
     $this->kitsConfig = new Config($this->getDataFolder() . "kitmessage.yml" , Config::YAML, Array(
         "kitsTitle_Title" => "§a-- §bKITS §a--",

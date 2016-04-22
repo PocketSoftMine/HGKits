@@ -9,6 +9,7 @@ Custom Messages | kitmessage.yml | true
 Custom ItemKit(Kangaruu) | config.yml | true
 Custom Message, Time and Item | kitconfig.yml | true
 System HGSoup | Not Found | true
+Fisherman and Launcher System | fishermanConfig.yml | true
 
 ## Commands
 
@@ -21,6 +22,9 @@ Commands | Info | Working |
 /urgal | UrgalKit | True
 /miner | MinerKit | True
 /life | LifeKit | True
+/suicide | SuicideKit | True
+/launcher | LauncherKit | True
+/fisherman | FishermanKit | True
 
 ## API Tested
 - [X] Genisys

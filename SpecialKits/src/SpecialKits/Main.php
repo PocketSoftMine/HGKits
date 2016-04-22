@@ -52,6 +52,13 @@ class Main extends PluginBase implements Listener{
         "urgalKit_receive" => "§cVocê pegou Kit Urgal",
 		"urgalKit_Time" => 10000,
 		"urgalKit_Item" => 366,
+		"minerKit_receive" => "§eVocê pegou Kit Miner",
+		"minerKit_Item" => 278,
+		"minerKit_Speed_Level" => 1,
+		"minerKit_Speed_Duration" => 10000,
+		"suicideKit_receive" => "§cVocê pegou Kit Suicide",
+		"lifeKit_receive" => "§aVocê pegou Kit Life",
+		"lifeKit_Regen_level" => 1,
      ));
     $this->saveResource("kitconfig.yml");
     

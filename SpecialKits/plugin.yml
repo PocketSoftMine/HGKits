@@ -1,6 +1,6 @@
 name: HGkits-SpecialKits
 main: SpecialKits\Main
-version: 0.4
+version: 0.5
 api:
 - 1.12.0
 - 1.13.0
@@ -43,6 +43,14 @@ commands:
   description: LifeKit
   use: "/life"
   permission: life.command
+ fisherman:
+  description: FishermanKit
+  use: "/fisherman"
+  permission: fisherman.command
+ launcher:
+  description: LauncherKit
+  use: "/launcher"
+  permission: launcher.command
 permissions:
  stomper.command:
   description: "EnderMageKit"
@@ -67,6 +75,12 @@ permissions:
   default: op
  life.command:
   description: "LifeKit"
+  default: op
+ fisherman.command:
+  description: "FishermanKit"
+  default: op
+ launcher.command:
+  description: "LauncherKit"
   default: op
  kangaruu.use.axe:
   description: Gives player permission to use leap via axe!

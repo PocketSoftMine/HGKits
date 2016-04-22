@@ -13,13 +13,14 @@ use pocketmine\item\Item;
 
 use pocketmine\event\player\PlayerInteractEvent;
 use pocketmine\event\player\PlayerItemHeldEvent;
+use pocketmine\event\entity\EntityDamageEvent;
+use pocketmine\event\entity\EntityDamageByEntityEvent;
 
 use pocketmine\math\Vector3;
 use pocketmine\event\player\PlayerToggleSneakEvent;
 use pocketmine\utils\Config;
 use pocketmine\level\sound\AnvilUseSound;
 use pocketmine\entity\Entity;
-use pocketmine\event\entity\EntityDamageEvent;
 use pocketmine\utils\Random;
 use pocketmine\event\entity\ExplosionPrimeEvent;
 use pocketmine\event\server\DataPacketReceiveEvent;
@@ -29,6 +30,17 @@ use pocketmine\utils\TextFormat as color;
 
 class Main extends PluginBase implements Listener{
      public function onEnable(){
+         
+        $this->fisherman = new Config($this->getDataFolder() . "fishermanConfig.yml" , Config::YAML, Array(
+            "KnockBack-Power" => 0.6,
+            "FishermanKit_Item" => 346,
+            "FishermanKit_receive" => "§bVocê pegou Kit Fisherman",
+            "KnockBack_KitLauncher-Power" => 1.3,
+            "LauncherKit_Item" => 352,
+            "LauncherKit_receive" => "§bVocê pegou Kit Launcher",
+        ));
+        $this->saveResource("fishermanConfig.yml");
+        $this->getServer()->getPluginManager()->registerEvents($this, $this);
          
 	$this->getServer()->getLogger()->info(color::YELLOW. "HGKITS-SpecialKits Ligado!");
     $this->getServer()->getPluginManager()->registerEvents($this, $this);
@@ -50,14 +62,17 @@ class Main extends PluginBase implements Listener{
         "stomperKit_receive" => "§bNao funcioanr",
         "kangaruuKit_receive" => "§eVocê pegou kit Kangaruu",
         "urgalKit_receive" => "§cVocê pegou Kit Urgal",
-		"urgalKit_Time" => 10000,
-		"urgalKit_Item" => 366,
-                "minerKit_receive" => "§bVocê pegou Kit Miner",
-                "minerKit_Item" => 278,
-		"minerKit_Speed_Level" => 1,
-		"minerKit_Speed_Duration" => 10000,
-		"lifeKit_receive" => "§aVocê pegou Kit Life",
-		"lifeKit_Regen_level" => 1,
+        "urgalKit_Time" => 10000,
+        "urgalKit_Item" => 366,
+	"minerKit_receive" => "§bVocê pegou Kit Miner",
+        "minerKit_Item" => 278,
+	"minerKit_Speed_Level" => 1,
+	"minerKit_Speed_Duration" => 10000,
+        "lifekit_receive" => "§cVoce pegou o kit LifeKit",
+	"lifeKit_Regen_level" => 1,
+        "lifeKit_Item" => 265,
+        "suicideKit_receive" => "§cVocê pegou o kit suicide",
+	"suicideKit_Item" => 265,
      ));
     $this->saveResource("kitconfig.yml");
     
@@ -68,8 +83,11 @@ class Main extends PluginBase implements Listener{
         "kitsMessage_3" => "§a/stomper §bKit Stomper",
         "kitsMessage_4" => "§a/urgal §bKit Urgal",
         "kitsMessage_5" => "§a/switcher §bKit Switcher",
-        "kitsMessage_6" => "§a/miner §bKit Miner",
+        "kitsMessage_6" => "§a/suicide §bKit Suicide",
         "kitsMessage_7" => "§a/life §bKit Life",
+        "kitsMessage_8" => "§a/miner §bKit Miner",
+        "kitsMessage_9" => "§a/fisherman §bKit Fisherman",
+        "kitsMessage_10" => "§a/launcher §bKit Launcher",
     ));
     $this->saveResource("kitmessage.yml");
 	
@@ -86,6 +104,9 @@ class Main extends PluginBase implements Listener{
              $kitsMessage5 = $this->kitsConfig->get("kitsMessage_5");
              $kitsMessage6 = $this->kitsConfig->get("kitsMessage_6");
              $kitsMessage7 = $this->kitsConfig->get("kitsMessage_7");
+             $kitsMessage8 = $this->kitsConfig->get("kitsMessage_8");
+             $kitsMessage9 = $this->kitsConfig->get("kitsMessage_9");
+             $kitsMessage10 = $this->kitsConfig->get("kitsMessage_10");
              $sender->sendMessage($kitsTitle);
              $sender->sendMessage($kitsMessage1);
              $sender->sendMessage($kitsMessage2);
@@ -94,6 +115,9 @@ class Main extends PluginBase implements Listener{
              $sender->sendMessage($kitsMessage5);
              $sender->sendMessage($kitsMessage6);
              $sender->sendMessage($kitsMessage7);
+             $sender->sendMessage($kitsMessage8);
+             $sender->sendMessage($kitsMessage9);
+             $sender->sendMessage($kitsMessage10);
                 return false;
          case "endermage":
              $endermageReceive = $this->config->get("endermageKit_receive");
@@ -105,15 +129,23 @@ class Main extends PluginBase implements Listener{
              $sender->getInventory()->addItem(Item::get(288, 0, 1));
                 $sender->sendMessage($kangaruuReceive);
                 return false;
+         case "life":
+             $lifeReceive = $this->config->get("lifeKit_receive");
+               $lifeLevel = $this->config->get("lifeKit_Regen_Level");
+                
+                $sender->addEffect(Effect::getEffect(10)->setAmplifier($lifeLevel)->setDuration(10000)->setVisible(false));
+             $sender->getInventory()->addItem(Item::get(265, 0, 2));
+                $sender->sendMessage($lifeReceive);
+                return false;
          case "urgal":
 			$urgalItem = $this->config->get("urgalKit_Item");
 			$urgalReceive = $this->config->get("urgalKit_receive");
 			$sender->getInventory()->addItem(Item::get($urgalItem, 0, 1));
 			$sender->getInventory()->addItem(Item::get($urgalItem, 0, 1));
 			$sender->getInventory()->addItem(Item::get($urgalItem, 0, 1));
-             $sender->sendMessage($urgalReceive); 
+             $sender->sendMessage($urgalReceive);
                 return false;
-         case "miner":
+		 case "miner":
                 $minerReceive = $this->config->get("minerKit_receive");
                 $minerItem = $this->config->get("minerKit_Item");
                 $minerSpeedL = $this->config->get("minerKit_Speed_Level");
@@ -124,19 +156,31 @@ class Main extends PluginBase implements Listener{
                 
                 $sender->addEffect(Effect::getEffect(3)->setAmplifier($minerSpeedL)->setDuration($minerSpeedD)->setVisible(false));
                 return false;
-         case "life":
-             
-                $lifeReceive = $this->config->get("lifeKit_receive");
-                $lifeLevel = $this->config->get("lifeKit_Regen_Level");
-                
-                $sender->sendMessage($lifeReceive);
-                $sender->addEffect(Effect::getEffect(10)->setAmplifier($lifeLevel)->setDuration(10000)->setVisible(false));
+         case "suicide":
+			$suicideItem = $this->config->get("suicideKit_Item");
+ 			$suicideReceive = $this->config->get("suicideKit_receive");      
+			$sender->getInventory()->addItem(Item::get($suicideItem, 0, 1));
+             $sender->sendMessage($suicideReceive);
+                return false;
+         case "fisherman":
+             $fishermanItem2 = $this->fisherman->get("FishermanKit_Item");
+             $fishermanReceive = $this->fisherman->get("FishermanKit_receive");
+             $sender->sendMessage($fishermanReceive);
+             $sender->getInventory()->addItem(Item::get($fishermanItem2));
+             return false;
+         case "launcher":
+             $launcherItem2 = $this->fisherman->get("LauncherKit_Item");
+             $launcherReceive = $this->fisherman->get("LauncherKit_receive");
+             $sender->sendMessage($launcherReceive);
+             $sender->getInventory()->addItem(Item::get($launcherItem2));
 		  }
 	 }
 	 
 	public function onTip(PlayerItemHeldEvent $ev){
 		if($ev->getPlayer()->getInventory()->getItemInHand()->getId() === 90){
 			$ev->getPlayer()->sendTip(color::YELLOW. "Endermage");
+		}  if($ev->getPlayer()->getInventory()->getItemInHand()->getId() === 265){
+			$ev->getPlayer()->sendTip(color::YELLOW. "LifeKit");
 		}
 	}
 	            public function onPacketReceived(DataPacketReceiveEvent $event){
@@ -253,7 +297,27 @@ $player->sendTIP($this->yml["Message"]);
 		  $player->getInventory()->removeItem(Item::get($urgalItem, 0, 1));
          $player->addEffect(Effect::getEffect(5)->setAmplifier(0)->setDuration($urgalTime)->setVisible(true));
 		$player->setHealth(20);
-  }
+  } if($event->getItem()->getID() == 265) {
+      $lifeItem = $this->config->get("lifeKit_Item");
+      $player->getInventory()->removeItem(Item::get($lifeItem, 0, 1));
+		$player->setHealth(25);
+                $player->getInventory()->removeItem(Item::get($lifeItem, 0, 1));
 }
+}
+
+    public function onHurt(EntityDamageEvent $event){
+		if($event instanceof EntityDamageByEntityEvent){
+			$damager = $event->getDamager();
+			if($damager instanceof Player){
+                            $launcherItem =  $this->fisherman->get("LauncherKit_Item");
+                            $fishermanItem = $this->fisherman->get("FishermanKit_Item");
+				if($damager->getInventory()->getItemInHand()->getId() === $fishermanItem){
+					$event->setKnockBack($this->fisherman->get("KnockBack-Power"));
+				} if($damager->getInventory()->getItemInHand()->getId() === $launcherItem){
+					$event->setKnockBack($this->fisherman->get("KnockBack_KitLauncher-Power")); 
+                                }
+			}
+		}
+	}
 }
 

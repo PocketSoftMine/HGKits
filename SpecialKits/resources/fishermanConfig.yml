@@ -1,0 +1,10 @@
+### Config for Fisherman Power ###
+
+KnockBack-Power: 0.6
+Fisherman_Item: 346
+FishermanKit_receive: §bVocê pegou o Kit Fisherman
+KnockBack_KitLauncher-Power: 1.3
+LauncherKit_Item: 352
+LauncherKit_receive: §bVocê pegou Kit Launcher
+
+### I think this is powerfull enough since the normal knockback is 0.4 ###

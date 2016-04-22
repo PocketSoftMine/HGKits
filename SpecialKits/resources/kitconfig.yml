@@ -17,4 +17,8 @@ minerKit_Speed_Duration: 10000
 ## LifeKit Config
 lifeKit_receive: §bVocê pegou Kit Life
 lifeKit_Regen_Level: 3
+lifeKit_Item: 265
+## SuicideKit Config
+suicideKit_receive: §bVocê pegou o Kit Suicide
+suicideKit_Item: 266
 ...

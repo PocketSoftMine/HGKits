@@ -15,8 +15,8 @@ Fisherman and Launcher System | fishermanConfig.yml | true
 
 Commands | Info | Working |
 -----------|----------|----------
-/endermage | Endermage Kit | False
-/kangaruu | Kangaruu Kit | True
+/endermage | EndermageKit | False
+/kangaruu | KangaruuKit | True
 /stomper | StomperKit | False
 /switcher | SwitcherKit | False
 /urgal | UrgalKit | True
@@ -25,6 +25,17 @@ Commands | Info | Working |
 /suicide | SuicideKit | True
 /launcher | LauncherKit | True
 /fisherman | FishermanKit | True
+
+## To-Do
+
+Kits | Config |
+-----|--------|
+Gladiator | gladiator.yml
+Viper | viper.yml
+Anchor | kits.yml
+Thor | kits.yml
+Vacuum | kits.yml
+Infernor | infernor.yml
 
 ## API Tested
 - [X] Genisys

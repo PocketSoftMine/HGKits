@@ -1,15 +1,8 @@
 ---
-# Config File:
-# The Kangaruu item ID:
 ID: 288
-# Popup or a message:
-# The popup/message sent to a play when they use Kangaruu:
 Decide: Popup
 Message: §a§lKangaruu
-# The Name of the item:
 ItemName: §b§l§oKangaruu
-# Popup or Message:
-# Message for cooldown:
 Choose: Popup
-CoolDownMsg:  §cEspere PorFavor!
+CoolDownMsg: §cEspere Por Favor!
 ...

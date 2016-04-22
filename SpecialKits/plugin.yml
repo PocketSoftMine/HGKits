@@ -7,7 +7,7 @@ api:
 - 2.0.0
 
 load: POSTWORLD
-author: RedstoneAlmeida
+author: RedstoneAlmeida, AnnonymousGames
 description: HungerGames Kits!
 website: https://github.com/PocketSoftMine/HGKits
 commands:
@@ -43,6 +43,18 @@ commands:
   description: LifeKit
   use: "/life"
   permission: life.command
+ fireman:
+  description: FireManKit
+  use: "/fireman"
+  permission: fire.command
+ anchor:
+  description: anchorKit
+  use: "/anchor"
+  permission: anchor.command
+ viper:
+  description: ViperKit
+  use: "/viper"
+  permission: viper.command
  fisherman:
   description: FishermanKit
   use: "/fisherman"
@@ -75,6 +87,15 @@ permissions:
   default: op
  life.command:
   description: "LifeKit"
+  default: op
+ fireman.command:
+  description: "FiremanKit"
+  default: op
+ anchor.command:
+  description: "AnchorKit"
+  default: op
+ viper.command:
+  description: "ViperKit"
   default: op
  fisherman.command:
   description: "FishermanKit"

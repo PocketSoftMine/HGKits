@@ -1,21 +1,16 @@
 ---
-## Titulo para Aparecer os Kits
-## Exemplo, para usar o exemplo remova o: #
-# kitsTitle_Title: §a-- §bKITS §a--
-# kitsMessage_1: §a/endermage §bKit EnderMage
-# kitsMessage_2: §a/kangaruu §bKit Kangaruu
-# kitsMessage_3: §a/stomper §bKit Stomper
-# kitsMessage_4: §a/urgal §bKit Urgal
-# kitsMessage_5: §a/switcher §bKit Switcher
 kitsTitle_Title: §a-- §bKITS §a--
 kitsMessage_1: §a/endermage §bKit EnderMage
 kitsMessage_2: §a/kangaruu §bKit Kangaruu
 kitsMessage_3: §a/stomper §bKit Stomper
 kitsMessage_4: §a/urgal §bKit Urgal
 kitsMessage_5: §a/switcher §bKit Switcher
-kitsMessage_6: §a/miner §bKit Miner
+kitsMessage_6: §a/suicide §bKit Suicide
 kitsMessage_7: §a/life §bKit Life
 kitsMessage_8: §a/miner §bKit Miner
 kitsMessage_9: §a/fisherman §bKit Fisherman
 kitsMessage_10: §a/launcher §bKit Launcher
+kitsMessage_11: §a/viper §bkit viper
+kitsMessage_12: §a/fisherman §bKit Fisherman
+kitsMessage_13: §a/launcher §bKit Launcher
 ...

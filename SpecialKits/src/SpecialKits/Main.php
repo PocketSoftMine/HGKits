@@ -56,7 +56,6 @@ class Main extends PluginBase implements Listener{
 		"minerKit_Item" => 278,
 		"minerKit_Speed_Level" => 1,
 		"minerKit_Speed_Duration" => 10000,
-		"suicideKit_receive" => "§cVocê pegou Kit Suicide",
 		"lifeKit_receive" => "§aVocê pegou Kit Life",
 		"lifeKit_Regen_level" => 1,
      ));

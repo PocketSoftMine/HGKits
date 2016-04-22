@@ -1,24 +1,23 @@
 ---
-## Mensagem do Kit endermage
-endermageKit_receive: §bVocê recebeu o kit Endermage
-## Mensagem do Kit Kangaruu
-kangaruuKit_receive: §eVocê recebeu kit Kangaruu
-## Mensagem do Kit Stomper
-stomperKit_receive: not working
-## UrgalKit Config
-urgalKit_receive: §cVocê recebeu kit Urgal
-urgalKit_Time: 10000 
+endermageKit_receive: §bVocê pegou Kit Endermage
+stomperKit_receive: §bNao funcioanr
+kangaruuKit_receive: §eVocê pegou kit Kangaruu
+urgalKit_receive: §cVocê pegou Kit Urgal
+urgalKit_Time: 10000
 urgalKit_Item: 366
-## MinerKit Config
-minerKit_receive: §bVocê recebeu Kit Miner
+minerKit_receive: §bVocê pegou Kit Miner
 minerKit_Item: 278
-minerKit_Speed_Level: 3
+minerKit_Speed_Level: 1
 minerKit_Speed_Duration: 10000
-## LifeKit Config
-lifeKit_receive: §bVocê pegou Kit Life
-lifeKit_Regen_Level: 3
+lifekit_receive: §cVoce pegou o kit LifeKit
+lifeKit_Regen_level: 1
 lifeKit_Item: 265
-## SuicideKit Config
-suicideKit_receive: §bVocê pegou o Kit Suicide
-suicideKit_Item: 266
+suicideKit_receive: §cVocê pegou o kit suicide
+suicideKit_Item: 265
+firemanKit_receive: §eVocê pegou Kit Fireman
+AnchorKit_receive: §eVocê pegou kit Anchor
+viperKit_receive: §bVocê pegou Kit Viper
+viperKit_Item: 331
+viperKit_damageLevel: 1
+viperKit_damageSeconds: 120
 ...

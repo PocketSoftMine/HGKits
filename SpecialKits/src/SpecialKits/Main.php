@@ -13,14 +13,14 @@ use pocketmine\item\Item;
 
 use pocketmine\event\player\PlayerInteractEvent;
 use pocketmine\event\player\PlayerItemHeldEvent;
-use pocketmine\event\entity\EntityDamageEvent;
-use pocketmine\event\entity\EntityDamageByEntityEvent;
 
 use pocketmine\math\Vector3;
 use pocketmine\event\player\PlayerToggleSneakEvent;
 use pocketmine\utils\Config;
 use pocketmine\level\sound\AnvilUseSound;
 use pocketmine\entity\Entity;
+use pocketmine\event\entity\EntityDamageEvent;
+use pocketmine\event\entity\EntityDamageByEntityEvent;
 use pocketmine\utils\Random;
 use pocketmine\event\entity\ExplosionPrimeEvent;
 use pocketmine\event\server\DataPacketReceiveEvent;
@@ -31,7 +31,10 @@ use pocketmine\utils\TextFormat as color;
 class Main extends PluginBase implements Listener{
      public function onEnable(){
          
-        $this->fisherman = new Config($this->getDataFolder() . "fishermanConfig.yml" , Config::YAML, Array(
+	$this->getServer()->getLogger()->info(color::YELLOW. "HGKITS-SpecialKits Ligado!");
+    $this->getServer()->getPluginManager()->registerEvents($this, $this);
+	
+	    $this->fisherman = new Config($this->getDataFolder() . "fishermanConfig.yml" , Config::YAML, Array(
             "KnockBack-Power" => 0.6,
             "FishermanKit_Item" => 346,
             "FishermanKit_receive" => "§bVocê pegou Kit Fisherman",
@@ -39,12 +42,8 @@ class Main extends PluginBase implements Listener{
             "LauncherKit_Item" => 352,
             "LauncherKit_receive" => "§bVocê pegou Kit Launcher",
         ));
-        $this->saveResource("fishermanConfig.yml");
-        $this->getServer()->getPluginManager()->registerEvents($this, $this);
-         
-	$this->getServer()->getLogger()->info(color::YELLOW. "HGKITS-SpecialKits Ligado!");
-    $this->getServer()->getPluginManager()->registerEvents($this, $this);
-	
+	    $this->saveResource("fishermanConfig.yml");
+		
 	$yml = new Config($this->getDataFolder() . "config.yml", Config::YAML, Array(
 		"ID" => 288,
 		"Decide" => "Popup",
@@ -61,18 +60,24 @@ class Main extends PluginBase implements Listener{
         "endermageKit_receive" => "§bVocê pegou Kit Endermage",
         "stomperKit_receive" => "§bNao funcioanr",
         "kangaruuKit_receive" => "§eVocê pegou kit Kangaruu",
+        "firemanKit_receive" => "§eVocê pegou Kit Fireman",
+        "AnchorKit_receive" => "§eVocê pegou kit Anchor",
         "urgalKit_receive" => "§cVocê pegou Kit Urgal",
+        "viperKit_receive" => "§bVocê pegou Kit Viper",
+		"viperKit_Item" => 331,
+		"viperKit_damageLevel" => 1,
+		"viperKit_damageSeconds" => 30,
         "urgalKit_Time" => 10000,
         "urgalKit_Item" => 366,
-	"minerKit_receive" => "§bVocê pegou Kit Miner",
+		"minerKit_receive" => "§bVocê pegou Kit Miner",
         "minerKit_Item" => 278,
-	"minerKit_Speed_Level" => 1,
-	"minerKit_Speed_Duration" => 10000,
+		"minerKit_Speed_Level" => 1,
+		"minerKit_Speed_Duration" => 10000,
         "lifekit_receive" => "§cVoce pegou o kit LifeKit",
-	"lifeKit_Regen_level" => 1,
+		"lifeKit_Regen_level" => 1,
         "lifeKit_Item" => 265,
         "suicideKit_receive" => "§cVocê pegou o kit suicide",
-	"suicideKit_Item" => 265,
+		"suicideKit_Item" => 265,
      ));
     $this->saveResource("kitconfig.yml");
     
@@ -86,8 +91,11 @@ class Main extends PluginBase implements Listener{
         "kitsMessage_6" => "§a/suicide §bKit Suicide",
         "kitsMessage_7" => "§a/life §bKit Life",
         "kitsMessage_8" => "§a/miner §bKit Miner",
-        "kitsMessage_9" => "§a/fisherman §bKit Fisherman",
-        "kitsMessage_10" => "§a/launcher §bKit Launcher",
+        "kitsMessage_9" => "§a/fireman §bKit fireman",
+        "kitsMessage_10" => "§a/anchor §bKit anchor",
+        "kitsMessage_11" => "§a/viper §bkit viper",
+        "kitsMessage_12" => "§a/fisherman §bKit Fisherman",
+        "kitsMessage_13" => "§a/launcher §bKit Launcher",
     ));
     $this->saveResource("kitmessage.yml");
 	
@@ -107,17 +115,24 @@ class Main extends PluginBase implements Listener{
              $kitsMessage8 = $this->kitsConfig->get("kitsMessage_8");
              $kitsMessage9 = $this->kitsConfig->get("kitsMessage_9");
              $kitsMessage10 = $this->kitsConfig->get("kitsMessage_10");
+             $kitsMessage11 = $this->kitsConfig->get("kitsMessage_11");
+             $kitsMessage12 = $this->kitsConfig->get("kitsMessage_12");
+             $kitsMessage13 = $this->kitsConfig->get("kitsMessage_13");
              $sender->sendMessage($kitsTitle);
              $sender->sendMessage($kitsMessage1);
              $sender->sendMessage($kitsMessage2);
              $sender->sendMessage($kitsMessage3);
              $sender->sendMessage($kitsMessage4);
              $sender->sendMessage($kitsMessage5);
+             $sender->sendMessage($kitsMessage5);
              $sender->sendMessage($kitsMessage6);
              $sender->sendMessage($kitsMessage7);
              $sender->sendMessage($kitsMessage8);
              $sender->sendMessage($kitsMessage9);
              $sender->sendMessage($kitsMessage10);
+             $sender->sendMessage($kitsMessage11);
+             $sender->sendMessage($kitsMessage12);
+             $sender->sendMessage($kitsMessage13);
                 return false;
          case "endermage":
              $endermageReceive = $this->config->get("endermageKit_receive");
@@ -144,6 +159,12 @@ class Main extends PluginBase implements Listener{
 			$sender->getInventory()->addItem(Item::get($urgalItem, 0, 1));
 			$sender->getInventory()->addItem(Item::get($urgalItem, 0, 1));
              $sender->sendMessage($urgalReceive);
+                return false;
+         case "viper":
+				$viperReceive = $this->config->get("viperKit_receive");
+				$viperItem2 = $this->config->get("viperKit_Item");
+             $sender->getInventory()->addItem(Item::get($viperItem2, 0, 1));
+                $sender->sendMessage($viperReceive);
                 return false;
 		 case "miner":
                 $minerReceive = $this->config->get("minerKit_receive");
@@ -305,10 +326,11 @@ $player->sendTIP($this->yml["Message"]);
 }
 }
 
-    public function onHurt(EntityDamageEvent $event){
-		if($event instanceof EntityDamageByEntityEvent){
-			$damager = $event->getDamager();
+   public function onHurt(EntityDamageEvent $event){
+	if($event instanceof EntityDamageByEntityEvent){
+	   $damager = $event->getDamager();
 			if($damager instanceof Player){
+							$viperItem = $this->config->get("viperKit_Item");
                             $launcherItem =  $this->fisherman->get("LauncherKit_Item");
                             $fishermanItem = $this->fisherman->get("FishermanKit_Item");
 				if($damager->getInventory()->getItemInHand()->getId() === $fishermanItem){
@@ -316,8 +338,13 @@ $player->sendTIP($this->yml["Message"]);
 				} if($damager->getInventory()->getItemInHand()->getId() === $launcherItem){
 					$event->setKnockBack($this->fisherman->get("KnockBack_KitLauncher-Power")); 
                                 }
+					if($damager->getInventory()->getItemInHand()->getId() === $viperItem){
+						$viperDamageLevel = $this->config->get("viperKit_damageLevel");
+						$viperDamageTime = $this->config->get("viperKit_damageSeconds");
+						$event->getEntity()->addEffect(Effect::getEffect(19)->setAmplifier($viperDamageLevel)->setDuration($viperDamageTime)->setVisible(true));
 			}
 		}
-	}
+    }
+  }
 }
 

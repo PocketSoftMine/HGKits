@@ -52,8 +52,8 @@ class Main extends PluginBase implements Listener{
         "urgalKit_receive" => "§cVocê pegou Kit Urgal",
 		"urgalKit_Time" => 10000,
 		"urgalKit_Item" => 366,
-		"minerKit_receive" => "§eVocê pegou Kit Miner",
-		"minerKit_Item" => 278,
+                "minerKit_receive" => "§bVocê pegou Kit Miner",
+                "minerKit_Item" => 278,
 		"minerKit_Speed_Level" => 1,
 		"minerKit_Speed_Duration" => 10000,
 		"lifeKit_receive" => "§aVocê pegou Kit Life",
@@ -68,6 +68,8 @@ class Main extends PluginBase implements Listener{
         "kitsMessage_3" => "§a/stomper §bKit Stomper",
         "kitsMessage_4" => "§a/urgal §bKit Urgal",
         "kitsMessage_5" => "§a/switcher §bKit Switcher",
+        "kitsMessage_6" => "§a/miner §bKit Miner",
+        "kitsMessage_7" => "§a/life §bKit Life",
     ));
     $this->saveResource("kitmessage.yml");
 	
@@ -82,12 +84,16 @@ class Main extends PluginBase implements Listener{
              $kitsMessage3 = $this->kitsConfig->get("kitsMessage_3");
              $kitsMessage4 = $this->kitsConfig->get("kitsMessage_4");
              $kitsMessage5 = $this->kitsConfig->get("kitsMessage_5");
+             $kitsMessage6 = $this->kitsConfig->get("kitsMessage_6");
+             $kitsMessage7 = $this->kitsConfig->get("kitsMessage_7");
              $sender->sendMessage($kitsTitle);
              $sender->sendMessage($kitsMessage1);
              $sender->sendMessage($kitsMessage2);
              $sender->sendMessage($kitsMessage3);
              $sender->sendMessage($kitsMessage4);
              $sender->sendMessage($kitsMessage5);
+             $sender->sendMessage($kitsMessage6);
+             $sender->sendMessage($kitsMessage7);
                 return false;
          case "endermage":
              $endermageReceive = $this->config->get("endermageKit_receive");
@@ -105,7 +111,26 @@ class Main extends PluginBase implements Listener{
 			$sender->getInventory()->addItem(Item::get($urgalItem, 0, 1));
 			$sender->getInventory()->addItem(Item::get($urgalItem, 0, 1));
 			$sender->getInventory()->addItem(Item::get($urgalItem, 0, 1));
-             $sender->sendMessage($urgalReceive);
+             $sender->sendMessage($urgalReceive); 
+                return false;
+         case "miner":
+                $minerReceive = $this->config->get("minerKit_receive");
+                $minerItem = $this->config->get("minerKit_Item");
+                $minerSpeedL = $this->config->get("minerKit_Speed_Level");
+                $minerSpeedD = $this->config->get("minerKit_Speed_Duration");
+                
+                $sender->sendMessage($minerReceive);
+                $sender->getInventory()->addItem(Item::get($minerItem));
+                
+                $sender->addEffect(Effect::getEffect(3)->setAmplifier($minerSpeedL)->setDuration($minerSpeedD)->setVisible(false));
+                return false;
+         case "life":
+             
+                $lifeReceive = $this->config->get("lifeKit_receive");
+                $lifeLevel = $this->config->get("lifeKit_Regen_Level");
+                
+                $sender->sendMessage($lifeReceive);
+                $sender->addEffect(Effect::getEffect(10)->setAmplifier($lifeLevel)->setDuration(10000)->setVisible(false));
 		  }
 	 }
 	 

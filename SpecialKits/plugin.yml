@@ -35,6 +35,14 @@ commands:
   description: UrgalKit
   use: "/urgal"
   permission: urgal.command
+ miner:
+  description: MinerKit
+  use: "/miner"
+  permission: miner.command
+ life:
+  description: LifeKit
+  use: "/life"
+  permission: life.command
 permissions:
  stomper.command:
   description: "EnderMageKit"
@@ -54,6 +62,12 @@ permissions:
  kits.command:
   description: "Kits"
   default: true
+ miner.command:
+  description: "MinerKit"
+  default: op
+ life.command:
+  description: "LifeKit"
+  default: op
  kangaruu.use.axe:
   description: Gives player permission to use leap via axe!
   default: true

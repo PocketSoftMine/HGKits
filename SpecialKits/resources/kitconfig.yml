@@ -5,10 +5,16 @@ endermageKit_receive: §bVocê recebeu o kit Endermage
 kangaruuKit_receive: §eVocê recebeu kit Kangaruu
 ## Mensagem do Kit Stomper
 stomperKit_receive: not working
-## Mensagem do KitUrgal
+## UrgalKit Config
 urgalKit_receive: §cVocê recebeu kit Urgal
-## Tempo de Duração do Efeito do Kit Urgal
-urgalKit_Time: 10000
-## Item do Kit
+urgalKit_Time: 10000 
 urgalKit_Item: 366
+## MinerKit Config
+minerKit_receive: §bVocê recebeu Kit Miner
+minerKit_Item: 278
+minerKit_Speed_Level: 3
+minerKit_Speed_Duration: 10000
+## LifeKit Config
+lifeKit_receive: §bVocê pegou Kit Life
+lifeKit_Regen_Level: 3
 ...

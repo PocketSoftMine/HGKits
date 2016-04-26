@@ -301,15 +301,6 @@ $player->sendTIP($this->yml["Message"]);
 }
 }
 
-   public function onUse(PlayerInteractEvent $event) {
-    $player = $event->getPlayer();
-    if(count($player->getEffects()) != 3) {
-      if($event->getItem()->getID() == 282) {
-        $player->getInventory()->removeItem(Item::get(282, 0, 1));
-        $player->getInventory()->addItem(Item::get(281, 0, 1));
-		$player->setHealth(20);
-      }
-
     }else{
       $player->sendMessage("");
     }   if($event->getItem()->getID() == $this->config->get("urgalKit_Item")) {

@@ -8,7 +8,6 @@ Feature | Config | Working |
 Custom Messages | kitmessage.yml | true
 Custom ItemKit(Kangaruu) | config.yml | true
 Custom Message, Time and Item | kitconfig.yml | true
-System HGSoup | Not Found | true
 Fisherman and Launcher System | fishermanConfig.yml | true
 
 ## Commands

@@ -1,109 +1,108 @@
 name: HGkits-SpecialKits
 main: SpecialKits\Main
-version: 0.6
+version: 0.7
 api:
 - 2.0.0
 - 3.0.0
-load: POSTWORLD
 author: RedstoneAlmeida, AnnonymousGames
 description: HungerGames Kits!
 website: https://github.com/PocketSoftMine/HGKits
 commands:
- kits:
-  description: Kits
-  use: "kits"
-  permission: kits.command
- stomper:
-  description: StomperKit
-  use: "/stomper"
-  permission: stomperkit.command
- endermage:
-  description: EnderMageKit
-  use: "/endermage"
-  permission: endermage.command
- kangaruu:
-  description: KangaruuKit
-  use: "/kangaruu"
-  permission: kangaruu.command
- switcher:
-  description: SwitcherKit
-  use: "/switcher"
-  permission: switcher.command
- urgal:
-  description: UrgalKit
-  use: "/urgal"
-  permission: urgal.command
- miner:
-  description: MinerKit
-  use: "/miner"
-  permission: miner.command
- life:
-  description: LifeKit
-  use: "/life"
-  permission: life.command
- fireman:
-  description: FireManKit
-  use: "/fireman"
-  permission: fire.command
- anchor:
-  description: anchorKit
-  use: "/anchor"
-  permission: anchor.command
- viper:
-  description: ViperKit
-  use: "/viper"
-  permission: viper.command
- fisherman:
-  description: FishermanKit
-  use: "/fisherman"
-  permission: fisherman.command
- launcher:
-  description: LauncherKit
-  use: "/launcher"
-  permission: launcher.command
+  kits:
+    description: Kits
+    use: "kits"
+    permission: kits.command
+  stomper:
+    description: StomperKit
+    use: "/stomper"
+    permission: stomperkit.command
+  endermage:
+    description: EnderMageKit
+    use: "/endermage"
+    permission: endermage.command
+  kangaruu:
+    description: KangaruuKit
+    use: "/kangaruu"
+    permission: kangaruu.command
+  switcher:
+    description: SwitcherKit
+    use: "/switcher"
+    permission: switcher.command
+  urgal:
+    description: UrgalKit
+    use: "/urgal"
+    permission: urgal.command
+  miner:
+    description: MinerKit
+    use: "/miner"
+    permission: miner.command
+  life:
+    description: LifeKit
+    use: "/life"
+    permission: life.command
+  fireman:
+    description: FireManKit
+    use: "/fireman"
+    permission: fire.command
+  anchor:
+    description: anchorKit
+    use: "/anchor"
+    permission: anchor.command
+  viper:
+    description: ViperKit
+    use: "/viper"
+    permission: viper.command
+  fisherman:
+    description: FishermanKit
+    use: "/fisherman"
+    permission: fisherman.command
+  launcher:
+    description: LauncherKit
+    use: "/launcher"
+    permission: launcher.command
 permissions:
- stomper.command:
-  description: "EnderMageKit"
-  default: false
- endermage.command:
-  description: "EnderMageKit"
-  default: op
- kangaruu.command:
-  description: "KangaruuKit"
-  default: op
- switcher.command:
-  description: "SwitcherKit"
-  default: false
- urgal.command:
-  description: "UrgalKit"
-  default: op
- kits.command:
-  description: "Kits"
-  default: true
- miner.command:
-  description: "MinerKit"
-  default: op
- life.command:
-  description: "LifeKit"
-  default: op
- fireman.command:
-  description: "FiremanKit"
-  default: op
- anchor.command:
-  description: "AnchorKit"
-  default: op
- viper.command:
-  description: "ViperKit"
-  default: op
- fisherman.command:
-  description: "FishermanKit"
-  default: op
- launcher.command:
-  description: "LauncherKit"
-  default: op
- kangaruu.use.axe:
-  description: Gives player permission to use leap via axe!
-  default: true
- kangaruu.use.crouch:
-  description: Gives players permission to use leap via crouching in air!
-  default: true
+  stomper.command:
+    description: "EnderMageKit"
+    default: false
+  endermage.command:
+    description: "EnderMageKit"
+    default: op
+  kangaruu.command:
+    description: "KangaruuKit"
+    default: op
+  switcher.command:
+    description: "SwitcherKit"
+    default: false
+  urgal.command:
+    description: "UrgalKit"
+    default: op
+  kits.command:
+    description: "Kits"
+    default: true
+  miner.command:
+    description: "MinerKit"
+    default: op
+  life.command:
+    description: "LifeKit"
+    default: op
+  fireman.command:
+    description: "FiremanKit"
+    default: op
+  anchor.command:
+    description: "AnchorKit"
+    default: op
+  viper.command:
+    description: "ViperKit"
+    default: op
+  fisherman.command:
+    description: "FishermanKit"
+    default: op
+  launcher.command:
+    description: "LauncherKit"
+    default: op
+  kangaruu.use.axe:
+    description: "Gives player permission to use leap via axe!"
+    default: true
+  kangaruu.use.crouch:
+    description: "Gives players permission to use leap via crouching in air!"
+    default: true

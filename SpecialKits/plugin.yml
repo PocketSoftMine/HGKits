@@ -1,64 +1,65 @@
-name: HGkits-SpecialKits
+name: HGKits-SpecialKits
 main: SpecialKits\Main
-version: 0.7
+version: 0.8
 api:
 - 2.0.0
 - 3.0.0
-author: RedstoneAlmeida, AnnonymousGames
-description: HungerGames Kits!
+- 4.0.0
+author: RedstoneAlmeida, AnnonymousGames, erkam2002
+description: "HungerGames Kits!"
 website: https://github.com/PocketSoftMine/HGKits
 commands:
   kits:
     description: Kits
-    use: "kits"
+    usage: "/kits"
     permission: kits.command
   stomper:
     description: StomperKit
-    use: "/stomper"
+    usage: "/stomper"
     permission: stomperkit.command
   endermage:
     description: EnderMageKit
-    use: "/endermage"
+    usage: "/endermage"
     permission: endermage.command
   kangaruu:
     description: KangaruuKit
-    use: "/kangaruu"
+    usage: "/kangaruu"
     permission: kangaruu.command
   switcher:
     description: SwitcherKit
-    use: "/switcher"
+    usage: "/switcher"
     permission: switcher.command
   urgal:
     description: UrgalKit
-    use: "/urgal"
+    usage: "/urgal"
     permission: urgal.command
   miner:
     description: MinerKit
-    use: "/miner"
+    usage: "/miner"
     permission: miner.command
   life:
     description: LifeKit
-    use: "/life"
+    usage: "/life"
     permission: life.command
   fireman:
     description: FireManKit
-    use: "/fireman"
+    usage: "/fireman"
     permission: fire.command
   anchor:
     description: anchorKit
-    use: "/anchor"
+    usage: "/anchor"
     permission: anchor.command
   viper:
     description: ViperKit
-    use: "/viper"
+    usage: "/viper"
     permission: viper.command
   fisherman:
     description: FishermanKit
-    use: "/fisherman"
+    usage: "/fisherman"
     permission: fisherman.command
   launcher:
     description: LauncherKit
-    use: "/launcher"
+    usage: "/launcher"
     permission: launcher.command
 permissions:
   stomper.command:

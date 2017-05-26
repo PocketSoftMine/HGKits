@@ -14,7 +14,6 @@ use pocketmine\event\player\PlayerItemHeldEvent;
 use pocketmine\math\Vector3;
 use pocketmine\event\player\PlayerToggleSneakEvent;
 use pocketmine\utils\Config;
-use pocketmine\level\sound\AnvilUseSound;
 use pocketmine\entity\Entity;
 use pocketmine\event\entity\EntityDamageEvent;
 use pocketmine\event\entity\EntityDamageByEntityEvent;
@@ -311,14 +310,14 @@ class Main extends PluginBase implements Listener {
 				}
 			}
 		}
-		if($e->getItem()->getID() == $this->config->get("urgalKit_Item")){
+		if($player->getItemInHand()->getID() == $this->config->get("urgalKit_Item")){
 			$urgalItem = $this->config->get("urgalKit_Item");
 			$urgalTime = $this->config->get("urgalKit_Time");
 			$player->getInventory()->removeItem(Item::get($urgalItem, 0, 1));
 			$player->addEffect(Effect::getEffect(5)->setAmplifier(0)->setDuration($urgalTime)->setVisible(true));
 			$player->setHealth(20);
 		}
-		if($e->getItem()->getID() == 265){
+		if($player->getItemInHand()->getID() == 265){
 			$lifeItem = $this->config->get("lifeKit_Item");
 			$player->getInventory()->removeItem(Item::get($lifeItem, 0, 1));
 			$player->setHealth(25);

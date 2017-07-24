@@ -99,105 +99,136 @@ class Main extends PluginBase implements Listener {
     }
 
 	public function onCommand(CommandSender $sender, Command $command, $label, array $args){
-		switch($command->getName()){
+		switch($command->getName()) {
             case "kits":
-                $kitsTitle = $this->kitsConfig->get("kitsTitle_Title");
-                $kitsMessage1 = $this->kitsConfig->get("kitsMessage_1");
-                $kitsMessage2 = $this->kitsConfig->get("kitsMessage_2");
-                $kitsMessage3 = $this->kitsConfig->get("kitsMessage_3");
-                $kitsMessage4 = $this->kitsConfig->get("kitsMessage_4");
-                $kitsMessage5 = $this->kitsConfig->get("kitsMessage_5");
-                $kitsMessage6 = $this->kitsConfig->get("kitsMessage_6");
-                $kitsMessage7 = $this->kitsConfig->get("kitsMessage_7");
-                $kitsMessage8 = $this->kitsConfig->get("kitsMessage_8");
-                $kitsMessage9 = $this->kitsConfig->get("kitsMessage_9");
-                $kitsMessage10 = $this->kitsConfig->get("kitsMessage_10");
-                $kitsMessage11 = $this->kitsConfig->get("kitsMessage_11");
-                $kitsMessage12 = $this->kitsConfig->get("kitsMessage_12");
-                $kitsMessage13 = $this->kitsConfig->get("kitsMessage_13");
-                $sender->sendMessage($kitsTitle);
-                $sender->sendMessage($kitsMessage1);
-                $sender->sendMessage($kitsMessage2);
-                $sender->sendMessage($kitsMessage3);
-                $sender->sendMessage($kitsMessage4);
-                $sender->sendMessage($kitsMessage5);
-                $sender->sendMessage($kitsMessage5);
-                $sender->sendMessage($kitsMessage6);
-                $sender->sendMessage($kitsMessage7);
-                $sender->sendMessage($kitsMessage8);
-                $sender->sendMessage($kitsMessage9);
-                $sender->sendMessage($kitsMessage10);
-                $sender->sendMessage($kitsMessage11);
-                $sender->sendMessage($kitsMessage12);
-                $sender->sendMessage($kitsMessage13);
-                return false;
+                if ($sender instanceof Player) {
+                    $kitsTitle = $this->kitsConfig->get("kitsTitle_Title");
+                    $kitsMessage1 = $this->kitsConfig->get("kitsMessage_1");
+                    $kitsMessage2 = $this->kitsConfig->get("kitsMessage_2");
+                    $kitsMessage3 = $this->kitsConfig->get("kitsMessage_3");
+                    $kitsMessage4 = $this->kitsConfig->get("kitsMessage_4");
+                    $kitsMessage5 = $this->kitsConfig->get("kitsMessage_5");
+                    $kitsMessage6 = $this->kitsConfig->get("kitsMessage_6");
+                    $kitsMessage7 = $this->kitsConfig->get("kitsMessage_7");
+                    $kitsMessage8 = $this->kitsConfig->get("kitsMessage_8");
+                    $kitsMessage9 = $this->kitsConfig->get("kitsMessage_9");
+                    $kitsMessage10 = $this->kitsConfig->get("kitsMessage_10");
+                    $kitsMessage11 = $this->kitsConfig->get("kitsMessage_11");
+                    $kitsMessage12 = $this->kitsConfig->get("kitsMessage_12");
+                    $kitsMessage13 = $this->kitsConfig->get("kitsMessage_13");
+                    $sender->sendMessage($kitsTitle);
+                    $sender->sendMessage($kitsMessage1);
+                    $sender->sendMessage($kitsMessage2);
+                    $sender->sendMessage($kitsMessage3);
+                    $sender->sendMessage($kitsMessage4);
+                    $sender->sendMessage($kitsMessage5);
+                    $sender->sendMessage($kitsMessage5);
+                    $sender->sendMessage($kitsMessage6);
+                    $sender->sendMessage($kitsMessage7);
+                    $sender->sendMessage($kitsMessage8);
+                    $sender->sendMessage($kitsMessage9);
+                    $sender->sendMessage($kitsMessage10);
+                    $sender->sendMessage($kitsMessage11);
+                    $sender->sendMessage($kitsMessage12);
+                    $sender->sendMessage($kitsMessage13);
+                    return false;
+                }
+                break;
             case "endermage":
-                $endermageReceive = $this->config->get("endermageKit_receive");
-                $sender->getInventory()->addItem(Item::get(90, 0, 1));
-                $sender->sendMessage($endermageReceive);
-                return false;
+                    if($sender instanceof Player) {
+                        $endermageReceive = $this->config->get("endermageKit_receive");
+                        $sender->getInventory()->addItem(Item::get(90, 0, 1));
+                        $sender->sendMessage($endermageReceive);
+                        return false;
+                    }
+                    break;
             case "kangaruu":
-                $kangaruuReceive = $this->config->get("kangaruuKit_receive");
-                $sender->getInventory()->addItem(Item::get(288, 0, 1));
-                $sender->sendMessage($kangaruuReceive);
-                return false;
+                if($sender instanceof Player) {
+                    $kangaruuReceive = $this->config->get("kangaruuKit_receive");
+                    $sender->getInventory()->addItem(Item::get(288, 0, 1));
+                    $sender->sendMessage($kangaruuReceive);
+                    return false;
+                }
+                break;
             case "life":
-                $lifeReceive = $this->config->get("lifeKit_receive");
-                $lifeLevel = $this->config->get("lifeKit_Regen_Level");
-                $sender->addEffect(Effect::getEffect(10)->setAmplifier($lifeLevel)->setDuration(10000)->setVisible(false));
-                $sender->getInventory()->addItem(Item::get(265, 0, 2));
-                $sender->sendMessage($lifeReceive);
-                return false;
+                if($sender instanceof Player) {
+                    $lifeReceive = $this->config->get("lifeKit_receive");
+                    $lifeLevel = $this->config->get("lifeKit_Regen_Level");
+                    $sender->addEffect(Effect::getEffect(10)->setAmplifier($lifeLevel)->setDuration(10000)->setVisible(false));
+                    $sender->getInventory()->addItem(Item::get(265, 0, 2));
+                    $sender->sendMessage($lifeReceive);
+                    return false;
+                }
+                break;
             case "urgal":
-                $urgalItem = $this->config->get("urgalKit_Item");
-                $urgalReceive = $this->config->get("urgalKit_receive");
-                $sender->getInventory()->addItem(Item::get($urgalItem, 0, 1));
-                $sender->getInventory()->addItem(Item::get($urgalItem, 0, 1));
-                $sender->getInventory()->addItem(Item::get($urgalItem, 0, 1));
-                $sender->sendMessage($urgalReceive);
-                return false;
+                if($sender instanceof Player) {
+                    $urgalItem = $this->config->get("urgalKit_Item");
+                    $urgalReceive = $this->config->get("urgalKit_receive");
+                    $sender->getInventory()->addItem(Item::get($urgalItem, 0, 1));
+                    $sender->getInventory()->addItem(Item::get($urgalItem, 0, 1));
+                    $sender->getInventory()->addItem(Item::get($urgalItem, 0, 1));
+                    $sender->sendMessage($urgalReceive);
+                    return false;
+                }
+                break;
             case "viper":
-                $viperReceive = $this->config->get("viperKit_receive");
-                $viperItem2 = $this->config->get("viperKit_Item");
-                $sender->getInventory()->addItem(Item::get($viperItem2, 0, 1));
-                $sender->sendMessage($viperReceive);
-                return false;
+                if($sender instanceof Player) {
+                    $viperReceive = $this->config->get("viperKit_receive");
+                    $viperItem2 = $this->config->get("viperKit_Item");
+                    $sender->getInventory()->addItem(Item::get($viperItem2, 0, 1));
+                    $sender->sendMessage($viperReceive);
+                    return false;
+                }
+                break;
             case "miner":
-                $minerReceive = $this->config->get("minerKit_receive");
-                $minerItem = $this->config->get("minerKit_Item");
-                $minerSpeedL = $this->config->get("minerKit_Speed_Level");
-                $minerSpeedD = $this->config->get("minerKit_Speed_Duration");
-                $sender->sendMessage($minerReceive);
-                $sender->getInventory()->addItem(Item::get($minerItem));
-                $sender->addEffect(Effect::getEffect(3)->setAmplifier($minerSpeedL)->setDuration($minerSpeedD)->setVisible(false));
-                return false;
+                if($sender instanceof Player) {
+                    $minerReceive = $this->config->get("minerKit_receive");
+                    $minerItem = $this->config->get("minerKit_Item");
+                    $minerSpeedL = $this->config->get("minerKit_Speed_Level");
+                    $minerSpeedD = $this->config->get("minerKit_Speed_Duration");
+                    $sender->sendMessage($minerReceive);
+                    $sender->getInventory()->addItem(Item::get($minerItem));
+                    $sender->addEffect(Effect::getEffect(3)->setAmplifier($minerSpeedL)->setDuration($minerSpeedD)->setVisible(false));
+                    return false;
+                }
+                break;
             case "suicide":
-                $suicideItem = $this->config->get("suicideKit_Item");
-                $suicideReceive = $this->config->get("suicideKit_receive");
-                $sender->getInventory()->addItem(Item::get($suicideItem, 0, 1));
-                $sender->sendMessage($suicideReceive);
-                return false;
+                if($sender instanceof Player) {
+                    $suicideItem = $this->config->get("suicideKit_Item");
+                    $suicideReceive = $this->config->get("suicideKit_receive");
+                    $sender->getInventory()->addItem(Item::get($suicideItem, 0, 1));
+                    $sender->sendMessage($suicideReceive);
+                    return false;
+                }
+                break;
             case "fisherman":
-                $fishermanItem2 = $this->fisherman->get("FishermanKit_Item");
-                $fishermanReceive = $this->fisherman->get("FishermanKit_receive");
-                $sender->sendMessage($fishermanReceive);
-                $sender->getInventory()->addItem(Item::get($fishermanItem2));
-                return false;
+                if($sender instanceof Player) {
+                    $fishermanItem2 = $this->fisherman->get("FishermanKit_Item");
+                    $fishermanReceive = $this->fisherman->get("FishermanKit_receive");
+                    $sender->sendMessage($fishermanReceive);
+                    $sender->getInventory()->addItem(Item::get($fishermanItem2));
+                    return false;
+                }
+                break;
             case "launcher":
-                $launcherItem2 = $this->fisherman->get("LauncherKit_Item");
-                $launcherReceive = $this->fisherman->get("LauncherKit_receive");
-                $sender->sendMessage($launcherReceive);
-                $sender->getInventory()->addItem(Item::get($launcherItem2));
+                if($sender instanceof Player) {
+                    $launcherItem2 = $this->fisherman->get("LauncherKit_Item");
+                    $launcherReceive = $this->fisherman->get("LauncherKit_receive");
+                    $sender->sendMessage($launcherReceive);
+                    $sender->getInventory()->addItem(Item::get($launcherItem2));
+                }
+                break;
         }
         return true;
 	}
 	
 	public function onTip(PlayerItemHeldEvent $ev){
-        if ($ev->getPlayer()->getInventory()->getItemInHand()->getId() === 90) {
-            $ev->getPlayer()->sendTip(C::YELLOW . "Endermage");
+	    $player = $ev->getPlayer();
+        if ($player->getInventory()->getItemInHand()->getId() == 90) {
+            $player->sendTip(C::YELLOW . "Endermage");
         }
-        if ($ev->getPlayer()->getInventory()->getItemInHand()->getId() === 265) {
-            $ev->getPlayer()->sendTip(C::YELLOW . "LifeKit");
+        if ($player->getInventory()->getItemInHand()->getId() == 265) {
+            $player->sendTip(C::YELLOW . "LifeKit");
         }
     }
 	
@@ -325,4 +356,3 @@ class Main extends PluginBase implements Listener {
 		}
 	}
 }
-

@@ -37,7 +37,6 @@ Vacuum | kits.yml
 Infernor | infernor.yml
 
 ## API Tested
-- [X] Genisys
+- [X] GenisysPro
 - [X] ClearSky
-- [ ] ImagicalMine
 - [ ] PocketMine

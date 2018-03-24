@@ -1,11 +1,8 @@
 name: HGKits-SpecialKits
 main: SpecialKits\Main
 version: 0.8
-api:
-- 2.0.0
-- 3.0.0
-- 4.0.0
-author: RedstoneAlmeida, AnnonymousGames, erkam2002
+api: [3.0.0, 3.0.0-ALPHA11, 3.0.1]
+author: RedstoneAlmeida, AnnonymousGames, ErkamKahriman
 description: "HungerGames Kits!"
 website: https://github.com/PocketSoftMine/HGKits
 commands:

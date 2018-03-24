@@ -2,6 +2,8 @@
 
 namespace SpecialKits;
 
+use pocketmine\entity\EffectInstance;
+use pocketmine\network\mcpe\protocol\InteractPacket;
 use pocketmine\plugin\PluginBase;
 use pocketmine\Player;
 use pocketmine\event\Listener;
@@ -18,14 +20,16 @@ use pocketmine\entity\Entity;
 use pocketmine\event\entity\EntityDamageEvent;
 use pocketmine\event\entity\EntityDamageByEntityEvent;
 use pocketmine\event\server\DataPacketReceiveEvent;
-use pocketmine\network\protocol\UseItemPacket;
 use pocketmine\utils\TextFormat as C;
 
 class Main extends PluginBase implements Listener {
 
+    /* @var Config */
     public $config;
+    /* @var Config */
     public $kitsConfig;
     public $yml;
+    /* @var Config */
     public $fisherman;
 	
 	public function onEnable(){
@@ -98,7 +102,7 @@ class Main extends PluginBase implements Listener {
         $this->saveResource("kitmessage.yml");
     }
 
-	public function onCommand(CommandSender $sender, Command $command, $label, array $args){
+	public function onCommand(CommandSender $sender, Command $command, $label, array $args) : bool{
 		switch($command->getName()) {
             case "kits":
                 if ($sender instanceof Player) {
@@ -153,8 +157,8 @@ class Main extends PluginBase implements Listener {
             case "life":
                 if($sender instanceof Player) {
                     $lifeReceive = $this->config->get("lifeKit_receive");
-                    $lifeLevel = $this->config->get("lifeKit_Regen_Level");
-                    $sender->addEffect(Effect::getEffect(10)->setAmplifier($lifeLevel)->setDuration(10000)->setVisible(false));
+                    $lifeLevel = (int) $this->config->get("lifeKit_Regen_Level");
+                    $sender->addEffect(new EffectInstance(Effect::getEffect(Effect::REGENERATION), 10000, $lifeLevel, false));
                     $sender->getInventory()->addItem(Item::get(265, 0, 2));
                     $sender->sendMessage($lifeReceive);
                     return false;
@@ -184,11 +188,11 @@ class Main extends PluginBase implements Listener {
                 if($sender instanceof Player) {
                     $minerReceive = $this->config->get("minerKit_receive");
                     $minerItem = $this->config->get("minerKit_Item");
-                    $minerSpeedL = $this->config->get("minerKit_Speed_Level");
-                    $minerSpeedD = $this->config->get("minerKit_Speed_Duration");
+                    $minerSpeedL = (int) $this->config->get("minerKit_Speed_Level");
+                    $minerSpeedD = (int) $this->config->get("minerKit_Speed_Duration");
                     $sender->sendMessage($minerReceive);
                     $sender->getInventory()->addItem(Item::get($minerItem));
-                    $sender->addEffect(Effect::getEffect(3)->setAmplifier($minerSpeedL)->setDuration($minerSpeedD)->setVisible(false));
+                    $sender->addEffect(new EffectInstance(Effect::getEffect(Effect::HASTE), $minerSpeedD, $minerSpeedL, false));
                     return false;
                 }
                 break;
@@ -222,7 +226,7 @@ class Main extends PluginBase implements Listener {
         return true;
 	}
 	
-	public function onTip(PlayerItemHeldEvent $ev){
+	public function onItemHelp(PlayerItemHeldEvent $ev){
 	    $player = $ev->getPlayer();
         if ($player->getInventory()->getItemInHand()->getId() == 90) {
             $player->sendTip(C::YELLOW . "Endermage");
@@ -231,37 +235,33 @@ class Main extends PluginBase implements Listener {
             $player->sendTip(C::YELLOW . "LifeKit");
         }
     }
-	
-	public function onPacketReceived(DataPacketReceiveEvent $event){
-        $pk = $event->getPacket();
-        $player = $event->getPlayer();
-        if ($pk instanceof UseItemPacket and $pk->face === 0xff){
-            $block = $player->getLevel()->getBlock($player->floor()->subtract(0, 1));
-            $item = $player->getInventory()->getItemInHand();
-            if ($player->hasPermission("kangaruu.use.axe")){
-                if ($block->getId() === 0) {
-                    if ($this->yml["Choose"] == "Popup"){
-                        $player->sendTIP($this->yml["CoolDownMsg"]);
-                    } elseif ($this->yml["Choose"] == "Message") {
-                        $player->sendMessage($this->yml["CoolDownMsg"]);
-                    }
-                    return true;
+
+    public function onInteract(PlayerInteractEvent $event){
+	    $player = $event->getPlayer();
+	    $item = $event->getItem();
+        $block = $player->getLevel()->getBlock($player->getSide(0));
+	    if ($player->hasPermission("kangaruu.use.axe")){
+	        if ($block->getId() == 0) {
+                if ($this->yml["Choose"] == "Popup") {
+                    $player->sendTip($this->yml["CoolDownMsg"]);
+                } elseif ($this->yml["Choose"] == "Message") {
+                    $player->sendMessage($this->yml["CoolDownMsg"]);
                 }
-                if ($item->getId() == $this->yml["ID"]){
-                    if ($player->getDirection() == 0) {
-                        $player->knockBack($player, 0, 1, 0, 1);
-                    } elseif ($player->getDirection() == 1) {
-                        $player->knockBack($player, 0, 0, 1, 1);
-                    } elseif ($player->getDirection() == 2) {
-                        $player->knockBack($player, 0, -1, 0, 1);
-                    } elseif ($player->getDirection() == 3) {
-                        $player->knockBack($player, 0, 0, -1, 1);
-                    }
-                    if ($this->yml["Decide"] == "Popup"){
-                        $player->sendTIP($this->yml["Message"]);
-                    } elseif ($this->yml["Decide"] == "Message") {
-                        $player->sendMessage($this->yml["Message"]);
-                    }
+            }
+            if ($item->getId() == $this->yml["ID"]){
+                if ($player->getDirection() == 0) {
+                    $player->knockBack($player, 0, 1, 0, 1);
+                } elseif ($player->getDirection() == 1) {
+                    $player->knockBack($player, 0, 0, 1, 1);
+                } elseif ($player->getDirection() == 2) {
+                    $player->knockBack($player, 0, -1, 0, 1);
+                } elseif ($player->getDirection() == 3) {
+                    $player->knockBack($player, 0, 0, -1, 1);
+                }
+                if ($this->yml["Decide"] == "Popup"){
+                    $player->sendTip($this->yml["Message"]);
+                } elseif ($this->yml["Decide"] == "Message") {
+                    $player->sendMessage($this->yml["Message"]);
                 }
             }
         }
